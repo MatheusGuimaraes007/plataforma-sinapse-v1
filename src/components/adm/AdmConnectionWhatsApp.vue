@@ -1,7 +1,6 @@
 <script setup>
-// NENHUMA MUDANÇA NO SCRIPT
 import SideMenuAdm from './SideMenuAdm.vue';
-import AdmConnectionSettings from './admConnectionSettings.vue';
+import AdmConnectionSettings from './AdmConnectionSettings.vue';
 import CreateInstanceModal from './CreateInstanceModal.vue';
 import { onMounted, onUnmounted, ref } from 'vue';
 import { SupabaseService } from '../../services/serviceSupabase';
