@@ -51,7 +51,7 @@ const isActive = (path) => {
         <span class="text-snpDarkBlue">Dashboard</span>
       </router-link>
       <router-link
-        to="/admCostomers"
+        to="/admCustomers"
         class="block px-3 py-1 rounded transition bg-snpLightBlue/30"
         :class="isActive('/contatos') ? 'bg-white/15' : 'hover:bg-snpLightBlue/50'"
       >
