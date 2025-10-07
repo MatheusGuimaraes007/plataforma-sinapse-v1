@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from '../components/Login.vue'
 import admPanel from "../components/adm/AdmPanel.vue";
-import AdmCostumer from "../components/adm/AdmCustumer.vue";
+import AdmCustomer from "../components/adm/AdmCustomer.vue";
 import AdmDashboard from "../components/adm/AdmDashboard.vue";
 import admConnectionWhatsApp from "../components/adm/admConnectionWhatsApp.vue";
 import costumerNumberConnection from "../components/costumers/CustumerNumberConnection.vue";
@@ -20,9 +20,9 @@ const routes = [
     component: admPanel,
   },
   {
-    path: '/admCostumers',
-    name: 'admCostumers',
-    component: AdmCostumer,
+    path: '/admCostomers',
+    name: 'admCostomers',
+    component: AdmCustomer,
   },
   {
     path: '/admDashboard',
