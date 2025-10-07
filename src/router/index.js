@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { supabase } from "../composables/useSupabase";
 
-// Importações dos componentes
+// --- IMPORTAÇÕES CORRIGIDAS ---
+// Nomes dos arquivos agora correspondem exatamente (maiúsculas e minúsculas)
 import Login from '../components/Login.vue';
-import AdmDashboard from "../components/adm/AdmDashboard.vue";
+import AdmPanel from "../components/adm/AdmPanel.vue";
 import AdmCustomer from "../components/adm/AdmCustomer.vue";
-import admConnectionWhatsApp from "../components/adm/admConnectionWhatsApp.vue";
-// 👇 CORRIGIDO: Nome do componente e caminho padronizado
+import AdmDashboard from "../components/adm/AdmDashboard.vue";
+import AdmConnectionWhatsApp from "../components/adm/AdmConnectionWhatsApp.vue";
 import CustomerNumberConnection from "../components/customers/CustomerNumberConnection.vue";
 
 const routes = [
@@ -15,11 +16,10 @@ const routes = [
     name: 'Login',
     component: Login,
   },
-  // --- ROTAS DE ADMIN ---
   {
-    path: '/admDashboard',
-    name: 'admDashboard',
-    component: AdmDashboard,
+    path: '/admPanel',
+    name: 'admPanel',
+    component: AdmPanel, // A variável já estava correta
     meta: { requiresAuth: true, role: 'adm-sinapse' }
   },
   {
@@ -29,14 +29,18 @@ const routes = [
     meta: { requiresAuth: true, role: 'adm-sinapse' }
   },
   {
-    path: '/admConnectionWhatsApp',
-    name: 'admConnectionWhatsApp',
-    component: admConnectionWhatsApp,
+    path: '/admDashboard',
+    name: 'admDashboard',
+    component: AdmDashboard,
     meta: { requiresAuth: true, role: 'adm-sinapse' }
   },
-  // --- ROTA DE CLIENTE ---
   {
-    // 👇 CORRIGIDO: path e name padronizados
+    path: '/admConnectionWhatsApp',
+    name: 'admConnectionWhatsApp',
+    component: AdmConnectionWhatsApp, // A variável já estava correta
+    meta: { requiresAuth: true, role: 'adm-sinapse' }
+  },
+  {
     path: '/customerNumberConnection',
     name: 'customerNumberConnection',
     component: CustomerNumberConnection,
@@ -49,7 +53,7 @@ const router = createRouter({
   routes,
 });
 
-// --- Guarda de Navegação Global ---
+// A guarda de navegação já estava correta
 router.beforeEach(async (to, from, next) => {
   const { data: { session } } = await supabase.auth.getSession();
   const userIsLoggedIn = !!session;
@@ -62,7 +66,6 @@ router.beforeEach(async (to, from, next) => {
     if (userRole === 'adm-sinapse') {
       next({ name: 'admDashboard' });
     } else if (userRole === 'customer') {
-      // 👇 CORRIGIDO: Redirecionamento para o nome de rota correto
       next({ name: 'customerNumberConnection' });
     } else {
       next({ name: 'Login' });
@@ -72,7 +75,6 @@ router.beforeEach(async (to, from, next) => {
     if (userRole === 'adm-sinapse') {
       next({ name: 'admDashboard' });
     } else {
-       // 👇 CORRIGIDO: Redirecionamento para o nome de rota correto
       next({ name: 'customerNumberConnection' });
     }
   }
