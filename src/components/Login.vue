@@ -3,7 +3,7 @@ import logoEscritaSinapse from '../assets/logoEscrita.svg'
 import {ref} from 'vue'
 import { useLogin } from '../composables/useLogin';
 
-const { login, email, password } = useLogin();
+const { login, email, password, errorMessage } = useLogin();
 const showPassword = ref(false);
 </script>
 

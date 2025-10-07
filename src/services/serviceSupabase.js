@@ -157,4 +157,17 @@ export class SupabaseService {
     console.log(`Usuário ${auth_uuid} deletado do Supabase Auth com sucesso.`);
     return data;
   }
+   async getUserProfile(authId) {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*') // Pega todos os dados, incluindo a 'role'
+      .eq('auth_uuid', authId)
+      .single(); // Espera apenas um resultado
+
+    if (error) {
+      console.error('Erro ao buscar perfil do usuário:', error);
+      return null;
+    }
+    return data;
+  }
 }

@@ -1,10 +1,11 @@
 <script setup>
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { useLogin } from '../../composables/useLogin';
 
 // 1. Estado reativo para controlar a abertura/fechamento do menu (mobile)
 const isMenuOpen = ref(false); 
-
+const { logout } = useLogin(); // 2. Pegar a função logout
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
@@ -73,6 +74,7 @@ const isActive = (path) => {
     </nav>
     <div class="p-4 gap-1 flex">
       <button
+      @click="logout"
         class="w-[40%] px-3 py-2 rounded bg-snpDarkBlue text-white font-medium 
                 hover:bg-snpDarkBlue/90 cursor-pointer transition"
       >
