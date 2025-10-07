@@ -170,4 +170,16 @@ export class SupabaseService {
     }
     return data;
   }
+  async getInstancesByUserId(userId) {
+    const { data, error } = await supabase
+      .from('connections_wpp')
+      .select('*')
+      .eq('user_id', userId);
+
+    if (error) {
+      console.error('Erro ao buscar instâncias do usuário:', error);
+      throw error;
+    }
+    return data;
+  }
 }

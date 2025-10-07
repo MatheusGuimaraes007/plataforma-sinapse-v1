@@ -12,7 +12,7 @@ export function useLogin() {
   const router = useRouter();
   const supabaseService = new SupabaseService();
 
-  async function login() {
+    async function login() {
     errorMessage.value = '';
     if (!email.value || !password.value) {
       errorMessage.value = 'Por favor, preencha todos os campos.';
@@ -20,7 +20,6 @@ export function useLogin() {
     }
 
     try {
-      // Passo 1: Autenticar
       const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
         email: email.value,
         password: password.value
@@ -31,20 +30,18 @@ export function useLogin() {
       }
 
       if (authData.user) {
-        // Passo 2: Buscar perfil para pegar a role
         const userProfile = await supabaseService.getUserProfile(authData.user.id);
         if (!userProfile) {
           throw new Error('Perfil de usuário não encontrado.');
         }
 
-        // Armazena a role para as guardas de rota
         localStorage.setItem('userRole', userProfile.role);
 
-        // Passo 3: Redirecionar
         if (userProfile.role === 'adm-sinapse') {
-          router.push('/admDashboard');
+          router.push({ name: 'admDashboard' });
         } else if (userProfile.role === 'customer') {
-          router.push('/costumerNumberConnection');
+          // 👇 CORRIGIDO: Redireciona usando o NOME da rota
+          router.push({ name: 'customerNumberConnection' });
         } else {
           throw new Error('Função (role) de usuário desconhecida.');
         }
