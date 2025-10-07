@@ -1,5 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from '../components/Login.vue'
+import admPanel from "../components/adm/AdmPanel.vue";
+import AdmCostumer from "../components/adm/AdmCustumer.vue";
+import AdmDashboard from "../components/adm/AdmDashboard.vue";
+import admConnectionWhatsApp from "../components/adm/admConnectionWhatsApp.vue";
+import costumerNumberConnection from "../components/costumers/CustumerNumberConnection.vue";
+import CostumerNumberConnection from "../components/costumers/CustumerNumberConnection.vue";
 // import Contatos from "../components/Contatos.vue";
 
 const routes = [
@@ -7,13 +13,37 @@ const routes = [
     path: '/',
     name: 'Login',
     component: Login,
+  },
+  {
+    path: '/admPanel',
+    name: 'admPanel',
+    component: admPanel,
+  },
+  {
+    path: '/admCostumers',
+    name: 'admCostumers',
+    component: AdmCostumer,
+  },
+  {
+    path: '/admDashboard',
+    name: 'admDashboard',
+    component: AdmDashboard,
+  },
+  {
+    path: '/numberConnection',
+    name: 'numberConnection',
+    component: costumerNumberConnection,
+  },
+  {
+    path: '/admConnectionWhatsApp',
+    name: 'admConnectionWhatsApp',
+    component: admConnectionWhatsApp,
+  },
+  {
+    path: '/costumerNumberConnection',
+    name: 'costumerNumberConnection',
+    component: CostumerNumberConnection
   }
-  // {
-  //   path: '/contatos',
-  //   name: 'contatos',
-  //   component: Contatos,
-  //   // meta: { requiresAuth: true } // 🔹 Indica que precisa de login
-  // }
 ]
 
 const router = createRouter({

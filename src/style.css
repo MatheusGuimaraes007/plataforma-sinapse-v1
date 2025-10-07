@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: 'Poppins', sans-serif;
+  --color-snpWhite: #EAFAFF;
+  --color-snpDarkBlue: #141C4D;
+  --color-snpLightBlue: #80E2FE;
+  --color-snpBlack: #050714;
+}
